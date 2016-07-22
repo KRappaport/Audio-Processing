@@ -30,20 +30,21 @@ int main(int argc, char const *argv[])
 		printf("Couldn't open:\n");
 		exit(1);
 	}
-	
+
 	fread(sin_deconstructed.ChunkID, sizeof(char), 4, sin);
-	fread(&sin_deconstructed.ChunkSize, sizeof(int), 1, sin);
+	fread(&sin_deconstructed.ChunkSize, sizeof(long), 1, sin);
 	fread(sin_deconstructed.Format, sizeof(char), 4, sin);
 	fread(sin_deconstructed.Subchunk1ID, sizeof(char), 3, sin);
+	fread(&sin_deconstructed.Subchunk1Size, sizeof(long), 1, sin);
+	fread(&sin_deconstructed.AudioFormat, sizeof(short), 1, sin);
+	fread(&sin_deconstructed.NumChannels, sizeof(short), 1, sin);
+	fread(&sin_deconstructed.SampleRate, sizeof(long), 1, sin);
+	fread(&sin_deconstructed.ByteRate, sizeof(long), 1, sin);
+	fread(&sin_deconstructed.BlockAlign, sizeof(short), 1, sin);
+	fread(&sin_deconstructed.BitsPerSample, sizeof(short), 1, sin);
+	fread(sin_deconstructed.Subchunk2ID, sizeof(char), 4, sin);
+	fread(&sin_deconstructed.Subchunk2Size, sizeof(long), 1, sin);
 
-		
-	/*
-	for (i = 0; i < 22;i++)
-	{
-		x = fgetc(sin);
-		printf("%.2X ", x);
-	}
-	*/
 	putchar('\n');
 	return(0);
 }
