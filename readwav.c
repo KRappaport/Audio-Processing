@@ -25,7 +25,12 @@ int main(int argc, char const *argv[])
 	FILE *audio;
 	WAVE_FILE wave_deconstructed;
 	int data_size, i, k;
-	audio = fopen("Flute.wav", "rb");
+
+	if (argc != 2) {
+		printf("Please provide a .wav file:\n");
+		exit(1);
+	}
+	audio = fopen(argv[1], "rb");
 	if (audio==NULL)
 	{
 		printf("Couldn't open:\n");
@@ -71,7 +76,7 @@ int main(int argc, char const *argv[])
 					fread(&wave_deconstructed.data_4[k][i], sizeof(short), 1, audio);
 				}
 			}
-
+			
 		}
 	}
 
